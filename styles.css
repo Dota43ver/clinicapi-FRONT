@@ -1,0 +1,70 @@
+
+.view {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.loader {
+    border: 8px solid #f3f3f3; 
+    border-top: 8px solid #3498db; 
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+#modal.active #modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+.doctor-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+.doctor-table th, .doctor-table td {
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem;
+    text-align: left;
+}
+.doctor-table th {
+    background-color: #f8fafc;
+    font-weight: 600;
+}
+.doctor-table tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+.doctor-table .action-buttons button {
+    margin-right: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.doctor-table .edit-btn {
+    background-color: #3b82f6; 
+}
+.doctor-table .edit-btn:hover {
+    background-color: #2563eb; 
+}
+.doctor-table .delete-btn {
+    background-color: #ef4444; 
+}
+.doctor-table .delete-btn:hover {
+    background-color: #dc2626; 
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Spring Salud</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-100 font-sans">
+
+    <div id="app" class="flex flex-col min-h-screen">
+
+        <header class="bg-white shadow-md">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-blue-600">
+                    <i class="fas fa-heart-pulse"></i> Spring Salud
+                </a>
+                <div id="nav-links" class="space-x-4">
+                </div>
+            </nav>
+        </header>
+
+        <main class="flex-grow container mx-auto p-4 md:p-6">
+
+            <section id="login-view" class="view">
+                <div class="max-w-md mx-auto bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Iniciar Sesión</h2>
+                    <form id="login-form">
+                        <div class="mb-4">
+                            <label for="login-email" class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" id="login-email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="login-password" class="block text-gray-700 mb-2">Contraseña</label>
+                            <input type="password" id="login-password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">Entrar</button>
+                    </form>
+                    <p class="text-center mt-4">¿No tienes cuenta? <a href="#" id="show-register-link" class="text-blue-600 hover:underline">Regístrate</a></p>
+                </div>
+            </section>
+
+            <section id="register-view" class="view hidden">
+                 <div class="max-w-md mx-auto bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Crear Cuenta</h2>
+                    <form id="register-form">
+                        <div class="mb-4">
+                            <label for="register-name" class="block text-gray-700 mb-2">Nombre Completo</label>
+                            <input type="text" id="register-name" class="w-full px-4 py-2 border rounded-lg" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="register-email" class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" id="register-email" class="w-full px-4 py-2 border rounded-lg" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="register-password" class="block text-gray-700 mb-2">Contraseña (mín. 8 caracteres)</label>
+                            <input type="password" id="register-password" class="w-full px-4 py-2 border rounded-lg" required minlength="8">
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Registrarse</button>
+                    </form>
+                    <p class="text-center mt-4">¿Ya tienes cuenta? <a href="#" id="show-login-link" class="text-blue-600 hover:underline">Inicia Sesión</a></p>
+                </div>
+            </section>
+
+            <section id="dashboard-view" class="view hidden">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Mi Panel</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4"><i class="fas fa-calendar-plus mr-2"></i>Agendar Nueva Consulta</h3>
+                        <form id="agendar-consulta-form">
+                            <div class="mb-4">
+                                <label for="consulta-doctor" class="block text-gray-700 mb-2">Doctor</label>
+                                <select id="consulta-doctor" class="w-full px-4 py-2 border rounded-lg bg-white" required></select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="consulta-fecha" class="block text-gray-700 mb-2">Fecha y Hora</label>
+                                <input type="datetime-local" id="consulta-fecha" class="w-full px-4 py-2 border rounded-lg" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="consulta-motivo" class="block text-gray-700 mb-2">Motivo de la Consulta</label>
+                                <textarea id="consulta-motivo" rows="3" class="w-full px-4 py-2 border rounded-lg" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Agendar</button>
+                        </form>
+                    </div>
+
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 class="text-xl font-semibold mb-4"><i class="fas fa-calendar-check mr-2"></i>Mis Próximas Consultas</h3>
+                            <div id="mis-consultas-content" class="max-h-80 overflow-y-auto"></div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 class="text-xl font-semibold mb-4"><i class="fas fa-vials mr-2"></i>Mis Estudios de Laboratorio</h3>
+                            <div id="mis-estudios-content" class="max-h-80 overflow-y-auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="admin-view" class="view hidden">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Panel de Administración</h2>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4"><i class="fas fa-user-doctor mr-2"></i>Gestionar Doctores</h3>
+                    <button id="add-doctor-btn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 mb-4">
+                        <i class="fas fa-plus mr-2"></i>Añadir Doctor
+                    </button>
+                    <div id="admin-doctores-content" class="overflow-x-auto"></div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4"><i class="fas fa-user-shield mr-2"></i>Otorgar Rol de Admin</h3>
+                    <form id="grant-admin-form" class="flex items-end gap-4">
+                        <div class="flex-grow">
+                            <label for="grant-admin-userid" class="block text-gray-700 mb-2">ID del Usuario</label>
+                            <input type="number" id="grant-admin-userid" class="w-full px-4 py-2 border rounded-lg" placeholder="Escribe el ID del usuario" required>
+                        </div>
+                        <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Otorgar Admin</button>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="bg-white mt-8">
+            <div class="container mx-auto px-6 py-4 text-center text-gray-600">
+                <p>&copy; 2025 Clínica Spring Salud. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div id="modal-content" class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md transform transition-all scale-95 opacity-0">
+            <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
+            <div id="modal-body"></div>
+            <div id="modal-footer" class="mt-6 flex justify-end space-x-4"></div>
+        </div>
+    </div>
+    
+    <div id="loader" class="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center hidden z-50">
+        <div class="loader"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
