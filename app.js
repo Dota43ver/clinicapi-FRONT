@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const loadMisEstudios = async () => {
         const content = document.getElementById('mis-estudios-content');
-        content.innerHTML = '<p class="text-gray-500">Funcionalidad de estudios no implementada en el backend de ejemplo.</p>';
+        content.innerHTML = '<p class="text-gray-500">Proximamente...</p>';
        
     };
 
@@ -476,3 +476,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init();
 });
+
