@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalFooter = document.getElementById('modal-footer');
 
     
-    const API_URL = 'https://clinicapi-back-production.up.railway.app'; // URL de tu backend Spring Boot
+    const API_URL = 'https://clinic.facudev.xyz'; // URL de tu backend Spring Boot
 
     
     let token = localStorage.getItem('token');
